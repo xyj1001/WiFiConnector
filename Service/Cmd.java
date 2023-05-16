@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 public class Cmd {
     public static String command(String cmd){//获取cmd输出
         try {
-            Process process = Runtime.getRuntime().exec(cmd);
 
+            Process process = Runtime.getRuntime().exec(cmd);
 
             //关闭流释放资源
             if(process != null){

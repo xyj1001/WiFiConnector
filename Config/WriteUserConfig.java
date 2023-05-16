@@ -2,6 +2,8 @@ package wificonnector.Config;
 
 import java.io.*;
 
+import static wificonnector.Utils.SomeStatic.*;
+
 public class WriteUserConfig {
     /**
      * 将字符串写入文件中
@@ -18,7 +20,7 @@ public class WriteUserConfig {
         File writefile;
         BufferedWriter bw;
         boolean append = true;  //  是否追加
-        String path = "C:\\WiFiConnectorUserConfig\\UserConfig.conf";
+
         writefile = new File(path);
         if (writefile.exists() == false)   // 判断文件是否存在，不存在则生成
         {
@@ -58,13 +60,12 @@ public class WriteUserConfig {
         File writefile;
         BufferedWriter bw;
         boolean append = true;  //  是否追加
-        String path = "C:\\WiFiConnectorUserConfig\\AutoConfig.conf";
-        writefile = new File(path);
+        writefile = new File(AutoConnectPath);
         if (writefile.exists() == false)   // 判断文件是否存在，不存在则生成
         {
             try {
                 writefile.createNewFile();
-                writefile = new File(path);
+                writefile = new File(AutoConnectPath);
             } catch (IOException e) {
                 // TODO 自动生成的 catch 块
                 e.printStackTrace();
@@ -77,13 +78,13 @@ public class WriteUserConfig {
         File writefile;
         BufferedWriter bw;
         boolean append = true;  //  是否追加
-        String path = "C:\\WiFiConnectorUserConfig\\AutoRunConfig.conf";
-        writefile = new File(path);
+
+        writefile = new File(AutoRunPath);
         if (writefile.exists() == false)   // 判断文件是否存在，不存在则生成
         {
             try {
                 writefile.createNewFile();
-                writefile = new File(path);
+                writefile = new File(AutoRunPath);
             } catch (IOException e) {
                 // TODO 自动生成的 catch 块
                 e.printStackTrace();
@@ -95,13 +96,13 @@ public class WriteUserConfig {
         File writefile;
         BufferedWriter bw;
         boolean append = true;  //  是否追加
-        String path = "C:\\WiFiConnectorUserConfig\\AutoClothConfig.conf";
-        writefile = new File(path);
+
+        writefile = new File(AutoClothPath);
         if (writefile.exists() == false)   // 判断文件是否存在，不存在则生成
         {
             try {
                 writefile.createNewFile();
-                writefile = new File(path);
+                writefile = new File(AutoClothPath);
             } catch (IOException e) {
                 // TODO 自动生成的 catch 块
                 e.printStackTrace();

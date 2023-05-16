@@ -13,12 +13,9 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
+import static wificonnector.Utils.SomeStatic.file;
+
 public class RegistryUser extends JFrame implements MouseListener {
-//    public static void main(String[] args) {
-//        RegistryUser mainJf = new RegistryUser();
-//
-//    }
-    static String path = "C:\\WiFiConnectorUserConfig\\UserConfig.conf";
 
 
     public static JTextField stuID = new JTextField();
@@ -34,10 +31,9 @@ public class RegistryUser extends JFrame implements MouseListener {
 
 public static JButton cancel=new JButton("取消");
 public static JButton determine=new JButton("保存");
-    String actionCommand;
 
     public RegistryUser() {
-        File file = new File(path);
+
         if (file.exists()==true){
 
             stuID.setText(GetUser.STU_NUM);
@@ -51,18 +47,19 @@ public static JButton determine=new JButton("保存");
         initRegistry();
         initView();
         this.setVisible(true);
+
+        //设置字体 可能放到这里设置不够聪明。。
         setFont(new Font("仿宋", Font.BOLD, 30));
     }
 
     private void initView() {
+        /************************通过绝对定位设置，学号。密码，学号密码的textfield。运营商的位置，做法过于愚蠢*****************************/
 
         this.user.setBounds(55, 32, 50, 50);
         this.getContentPane().add(user);
 
         this.stuID.setBounds(90, 40, 200, 36);
         this.getContentPane().add(stuID);
-
-
 
         this.password.setBounds(55,80,50,50);
         this.getContentPane().add(password);
@@ -71,34 +68,25 @@ public static JButton determine=new JButton("保存");
         this.getContentPane().add(psd);
 
 
-
-
         this.yd.setBounds(70, 130, 60, 40);
         this.getContentPane().add(yd);
-
 
         this.dx.setBounds(130, 130, 60, 40);
         this.getContentPane().add(dx);
 
-
         this.lt.setBounds(190, 130, 60, 40);
         this.getContentPane().add(lt);
 
-
         this.wxu.setBounds(250, 130, 60, 40);
         this.getContentPane().add(wxu);
+
+        /**********将JRadioButton加入Group这样四个运营商就只能选择其中一个了*****************/
 
         ButtonGroup group = new ButtonGroup();
         group.add(yd);
         group.add(dx);
         group.add(lt);
         group.add(wxu);
-
-
-
-
-//        actionCommand = group.getSelection().getActionCommand();
-
 
         /**************************取消 or 保存 **************************************/
 
@@ -111,7 +99,7 @@ public static JButton determine=new JButton("保存");
         determine.addMouseListener(this);
 
 
-        /****************************************************************/
+        /***************************************************************************/
     }
 
     private void initRegistry() {

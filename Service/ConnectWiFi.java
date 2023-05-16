@@ -1,40 +1,48 @@
 package wificonnector.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class ConnectWiFi {
-//    public static void main(String[] args) throws Exception {
-//        ConnectWxxy();
-//    }
+
+    private static int respCode = 0;
+
     public static int ConnectWxxy() throws Exception {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+
+        /***************下面方法需要做好关键优化***************/
+
+        Cmd.command("netsh wlan connect name=i-wxxy");
+
+        /***************上面方法需要做好关键优化***************/
 
 
-        String command = Cmd.command("netsh wlan connect name=i-wxxy");
-        System.out.print("Wifi 连接成功！ ");
-        System.out.print(dateFormat.format(new Date()));
-        System.out.println(" ");
-
-        int respCode=0;
         try {
-            Thread.sleep(2000);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
+            Thread.sleep(1500);
 
             HttpURLConnection http = new HttpURLConnection();
             respCode = http.sendURL();
 
-            System.out.println("============================"+respCode);
+            System.out.println(respCode);
 
+        } catch (RuntimeException e) {
+            System.out.println("wifi连接失败，接下来会重连......");
+            e.printStackTrace();
 
-            if (respCode==200) System.out.print("Wifi 认证成功！ ");
-            if (respCode==0) System.out.print("Wifi 认证失败！ ");
-            System.out.print(dateFormat.format(new Date()));
+        } finally {
+            if (respCode != 200) {
+                Thread.sleep(1500);
 
+                HttpURLConnection http = new HttpURLConnection();
+                respCode = http.sendURL();
+
+                System.out.println("===========响应状态码=================" + respCode);
+
+//            if (respCode == 200) {
+//                System.out.print("Wifi 认证成功！ ");
+//            }else {
+//                System.out.print("Wifi 认证失败！ ");
+//            }
+//            System.out.print(dateFormat.format(new Date()));
+            }
         }
 
 

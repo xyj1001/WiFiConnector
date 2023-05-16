@@ -9,16 +9,23 @@ public class HttpURLConnection {
 //        int i = HttpURLConnection.sendURL();
 //        System.out.println(i);
 //    }
+static int responseCode;
+
     private final static String USER_AGENT = "Mozilla/5.0";
 
     // HTTP GET请求
     public static int sendURL() throws Exception {
 
         String url = getURL.URL();
+
         System.out.println(url);
 
+
         if (url.equals("0")) {
-            return 0;
+
+            responseCode=0;
+            return responseCode;
+
         }
 
 
@@ -31,7 +38,7 @@ public class HttpURLConnection {
         //添加请求头
         con.setRequestProperty("User-Agent", USER_AGENT);
 
-        int responseCode = con.getResponseCode();
+        responseCode = con.getResponseCode();
         /********************************************************
          System.out.println("\nSending 'GET' request to URL : " + url);
 
